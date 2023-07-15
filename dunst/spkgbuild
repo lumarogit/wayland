@@ -1,0 +1,17 @@
+# description	: Customizable and lightweight notification-daemon
+# depends	: libxinerama pango libxscrnsaver libinput
+
+name=dunst
+version=1.9.2
+release=2
+source="https://github.com/dunst-project/dunst/archive/v$version/$name-$version.tar.gz
+	dunstrc"
+
+build() {
+
+	cd $name-$version
+	cp $SRC/dunstrc .
+	make all dunstify
+	make PREFIX=/usr SYSCONFDIR=/etc DESTDIR=$PKG install
+	install -Dm755 dunstify $PKG/usr/bin/dunstify	
+}

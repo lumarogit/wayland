@@ -1,0 +1,20 @@
+# description		: Wayland stacking compositor
+# homepage		: https://github.com/labwc/labwc
+# depends		: pango meson wlroots
+
+name=labwc
+version=0.6.4.230714
+_commit="6b83db34afca59686d36a458b527b71355680d48"
+release=1
+source="$name-$version.tar.gz::https://github.com/labwc/labwc/archive/$_commit.tar.gz"
+
+build() {
+
+    venom-meson $name-$_commit build \
+	-Dman-pages=disabled \
+	-Dxwayland=disabled \
+	-Dnls=disabled
+    meson compile -C build
+    DESTDIR=$PKG meson install --no-rebuild -C build
+
+}

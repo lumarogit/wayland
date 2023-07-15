@@ -1,0 +1,20 @@
+# description		: A lightweight notification daemon for wayland
+# homepage		: https://wayland.emersion.fr/mako
+# depends		: pango wayland
+
+name=mako
+version=1.8.0
+release=1
+source="$name-$version.tar.gz::https://github.com/emersion/mako/archive/v$version.tar.gz"
+
+build() {
+	venom-meson $name-$version build \
+		-Dsd-bus-provider=basu \
+		-Dman-pages=disabled \
+		-Dicons=disabled \
+		-Dbash-completions=false \
+		-Dzsh-completions=false \
+		-Dfish-completions=false 
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+} 

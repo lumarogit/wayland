@@ -1,5 +1,5 @@
 # description	: Libraries used for creating graphical user interfaces for applications
-# depends	: gdk-pixbuf pango
+# depends	: at-spi2-core libepoxy gdk-pixbuf pango
 
 name=gtk3
 version=3.24.38

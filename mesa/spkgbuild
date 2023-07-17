@@ -1,5 +1,5 @@
 # description	: OpenGL compatible 3D graphics library
-# depends	: python3-mako llvm elfutils bison flex libxext libxdamage libxshmfence libxrandr libdrm libglvnd libva zstd
+# depends	: python3-mako llvm elfutils bison flex libdrm libglvnd libva wayland-protocols zstd
 # optional	: libvdpau
 name=mesa
 version=23.1.3

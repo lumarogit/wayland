@@ -1,7 +1,7 @@
 # description	: Standalone web browser from mozilla.org
 # homepage	: https://www.mozilla.org/firefox/
-# depends	: autoconf2.13 cbindgen clang dbus-glib ffmpeg hicolor-icon-theme libevent libffi libnotify 
-# depends	: libxcomposite libxcursor libwebp lld nodejs nspr nss pkgconf rust unzip
+# depends	: autoconf2.13 cbindgen clang dbus-glib ffmpeg libevent libffi
+# depends	: libnotify libwebp lld nodejs nspr nss pkgconf rust unzip
 
 name=firefox
 version=115.0.2

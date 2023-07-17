@@ -1,5 +1,5 @@
 # description	: keymap compiler and support library
-# depends	: meson wayland-protocols
+# depends	: meson xkeyboard-config wayland-protocols
 
 name=libxkbcommon
 version=1.5.0

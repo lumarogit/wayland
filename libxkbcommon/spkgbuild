@@ -1,0 +1,17 @@
+# description	: keymap compiler and support library
+# depends	: meson wayland-protocols
+
+name=libxkbcommon
+version=1.5.0
+release=2
+source="https://xkbcommon.org/download/$name-$version.tar.xz"
+
+build() {
+	venom-meson $name-$version build \
+	-Denable-wayland=true \
+	-Denable-x11=false \
+	-Denable-docs=false \
+	-Denable-xkbregistry=false
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

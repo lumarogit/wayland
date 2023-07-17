@@ -1,5 +1,6 @@
 # description	: Tiling Wayland compositor and replacement for the i3 window manager 
-# depends	: json-c pango wlroots swaybg
+# homepage	: https://swaywm.org/
+# depends	: json-c pango pcre2 swaybg ttf-dejavu wlroots
 
 name=sway
 version=1.8.1
@@ -7,7 +8,13 @@ release=1
 source="https://github.com/swaywm/sway/releases/download/$version/sway-$version.tar.gz"
 
 build() {
-	venom-meson $name-$version build -D werror=false 
+	venom-meson $name-$version build \
+		-Ddefault-wallpaper=false \
+    		-Dzsh-completions=false \
+    		-Dbash-completions=false \
+    		-Dfish-completions=false \
+    		-Dxwayland=disabled \
+		-Dwerror=false 
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 	

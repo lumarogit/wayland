@@ -1,0 +1,22 @@
+# description	: A free, open source, and cross-platform media player
+# depends	: mesa meson lcms2 ffmpeg libass luajit wayland-protocols
+
+name=mpv
+version=0.35.1
+release=4
+source="https://github.com/mpv-player/mpv/archive/v$version/$name-$version.tar.gz
+	mpv-0.35.1-yt-dlp-edl-fragments.patch"
+
+build() {
+	patch -d $name-$version -Np1 -i $SRC/mpv-0.35.1-yt-dlp-edl-fragments.patch
+
+	venom-meson $name-$version build \
+		-Dalsa=enabled \
+		-Dlibarchive=enabled \
+		-Dlibmpv=true \
+		-Dwayland=enabled \
+		-Dx11=disabled \
+		-Dlua=luajit 
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

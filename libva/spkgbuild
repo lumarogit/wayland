@@ -1,0 +1,17 @@
+# description	: Library which provides access to hardware accelerated video processing
+# depends	: mesa libdrm meson
+
+name=libva
+version=2.19.0
+release=2
+source="https://github.com/intel/libva/archive/$version/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+	venom-meson build \
+		-Dwith_wayland=yes \
+		-Dwith_x11=no \
+		-Dwith_glx=no
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

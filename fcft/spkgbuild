@@ -8,7 +8,7 @@ release=1
 source="$name-$version.tar.gz::https://codeberg.org/dnkl/fcft/archive/$version.tar.gz"
 
 build() {
-	venom-meson $name build $_opts \
+	venom-meson $name build \
 		-D grapheme-shaping=enabled \
 		-D run-shaping=enabled \
 		-D docs=disabled \

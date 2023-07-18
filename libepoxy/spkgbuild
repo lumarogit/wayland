@@ -1,0 +1,17 @@
+# description	: Library for handling OpenGL function pointer management
+# depends	: mesa meson
+
+name=libepoxy
+version=1.5.10
+release=2
+source="https://github.com/anholt/libepoxy/archive/$version/$name-$version.tar.gz"
+
+build() {
+	venom-meson $name-$version build \
+		-Degl=yes \
+		-Dtests=false \
+		-Dglx=no \
+		-Dx11=false
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}

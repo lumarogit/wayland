@@ -1,5 +1,5 @@
 # description	: Customizable and lightweight notification-daemon
-# depends	: libxinerama pango libxscrnsaver libinput
+# depends	: pango libinput
 
 name=dunst
 version=1.9.2

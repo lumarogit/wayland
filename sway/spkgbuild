@@ -13,7 +13,7 @@ build() {
     		-Dzsh-completions=false \
     		-Dbash-completions=false \
     		-Dfish-completions=false \
-		-Dswaybar=false \
+		-Dswaybar=true \
 		-Dswaynag=false \
 		-Dtray=disabled \
     		-Dxwayland=disabled \

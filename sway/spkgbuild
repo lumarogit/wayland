@@ -15,7 +15,7 @@ build() {
     		-Dfish-completions=false \
 		-Dswaybar=false \
 		-Dswaynag=false \
-		-Dtray=false \
+		-Dtray=disabled \
     		-Dxwayland=disabled
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build

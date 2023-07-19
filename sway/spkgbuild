@@ -16,13 +16,8 @@ build() {
 		-Dswaybar=false \
 		-Dswaynag=false \
 		-Dtray=disabled \
-    		-Dxwayland=disabled
+    		-Dxwayland=disabled \
+		-Dwerror=false
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
-	
-	# clean
-	rm -r $PKG/usr/share/bash*
-	rm -r $PKG/usr/share/fish
-	rm -r $PKG/usr/share/zsh
-	rm -r $PKG/usr/share/backgrounds
 }

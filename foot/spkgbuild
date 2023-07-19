@@ -4,48 +4,23 @@
 
 name=foot
 version=1.15.0
-release=1
+release=2
 source="$name-$version.tar.gz::https://codeberg.org/dnkl/foot/archive/$version.tar.gz"
 
 build() {
 
-	opt=""
-	scratch isinstalled  utf8proc && _opt=' -D grapheme-clustering=enabled'
+	export CFLAGS="$CFLAGS -O3" # -O3 as the package is intended to use it
+	export CXXFLAGS="$CXXFLAGS -O3"
+	export CPPFLAGS="$CPPFLAGS -O3"
 
-	# doing the lto dance
-	export CFLAGS='-march=x86-64 -O3 -Wno-missing-profile -Wno-error'
-	venom-meson $name build \
-	    -Ddocs=disabled \
-	    -Dthemes=false\
-	    -Dtests=false \
-	    -Dime=true \
-	    $_opt
-	find -name "*.gcda" -delete
+	venom-meson $name-$version build \
+		-Db_pgo=generate \
+		-Dutmp-backend=none 
 	meson compile -C build
-	
-	local script_options="--scroll --scroll-region --colors-regular --colors-bright --colors-256 --colors-rgb --attr-bold --attr-italic --attr-underline --sixel"
-	tmp_file=$(mktemp)
-	if [ -v WAYLAND_DISPLAY ]; then
-		local tmp_file=$(mktemp)
-		export LC_ALL=en_US.UTF-8
-		build/footclient --version
-		build/foot \
-		--config /dev/null \
-		--term=xterm \
-		sh -c "sleep 2 && $SRC/$name/scripts/generate-alt-random-writes.py ${script_options} ${tmp_file} && cat ${tmp_file}" | true
-	else
-		build/footclient --version
-		build/foot --version
-		$SRC/$name/scripts/generate-alt-random-writes.py \
-		--rows=67 \
-		--cols=135 \
-		$script_options \
-	$tmp_file
-	# build/pgo $tmp_file $tmp_file $tmp_file
-	fi
 
-	rm $tmp_file
-	meson configure -D b_pgo=use build
+	./pgo/full-headless-cage.sh . build
+
+	meson configure -Db_pgo=use build
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 

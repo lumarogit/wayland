@@ -4,7 +4,7 @@
 
 name=sway
 version=1.8.1
-release=1
+release=2
 source="https://github.com/swaywm/sway/releases/download/$version/sway-$version.tar.gz"
 
 build() {
@@ -13,8 +13,10 @@ build() {
     		-Dzsh-completions=false \
     		-Dbash-completions=false \
     		-Dfish-completions=false \
-    		-Dxwayland=disabled \
-		-Dwerror=false 
+		-Dswaybar=false \
+		-Dswaynag=false \
+		-Dtray=false \
+    		-Dxwayland=disabled
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 	

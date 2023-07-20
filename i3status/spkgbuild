@@ -11,7 +11,7 @@ source="https://i3wm.org/i3status/$name-$version.tar.xz"
 
 build() {
 	export XML_CATALOG_FILES=/etc/xml/catalog
-	venom-meson $name-$version build -Dpulseaudion=false
+	venom-meson $name-$version build -Dpulseaudio=false
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

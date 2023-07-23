@@ -3,7 +3,7 @@
 # depends	: meson
 
 name=libseat
-version=0.7.0
+version=0.8.0
 release=1
 source="$name-$version.tar.gz::https://git.sr.ht/~kennylevinsen/seatd/archive/$version.tar.gz"
 

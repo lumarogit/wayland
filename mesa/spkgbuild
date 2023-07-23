@@ -1,12 +1,12 @@
 # description	: OpenGL compatible 3D graphics library
-# depends	: llvm python3-mako elfutils bison flex libdrm libva
+# depends	: llvm python3-mako elfutils bison flex libdrm libva libglvnd
 
 ##olddepends	: llvm python3-mako elfutils bison flex libxext libxdamage
 ##olddepends	: libxshmfence libxxf86vm libxrandr libdrm libglvnd libva
 
 name=mesa
 version=23.1.4
-release=2
+release=3
 source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz"
 
 build() {
@@ -37,7 +37,7 @@ build() {
                 -Dgallium-nine=false \
 		-Dshared-glapi=enabled \
 		-Dvulkan-drivers='' \
-		-Dglvnd=false \
+		-Dglvnd=true \
                 -Dzstd=disabled \
 		-Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
 		-Dvalgrind=disabled
@@ -45,5 +45,5 @@ build() {
 	DESTDIR=$PKG meson install --no-rebuild -C build
 
 	# indirect rendering symlink
-	ln -s libGLX_mesa.so.0 $PKG/usr/lib/libGLX_indirect.so.0
+	# ln -s libGLX_mesa.so.0 $PKG/usr/lib/libGLX_indirect.so.0
 }

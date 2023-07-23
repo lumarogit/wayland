@@ -1,16 +1,19 @@
 # description	: The GL Vendor-Neutral Dispatch library
-# homepage	: https://gitlab.freedesktop.org/glvnd/libglvnd
 # depends	: libxext
 
 name=libglvnd
 version=1.6.0
-release=2
-source="https://github.com/NVIDIA/libglvnd/archive/v$version/$name-v$version.tar.gz"
+release=1
+source="https://github.com/NVIDIA/libglvnd/archive/v$version/$name-v$version.tar.gz
+	0001-glx-Add-another-fallback-library-name.patch"
 
 build() {
+	# https://src.fedoraproject.org/rpms/libglvnd
+	patch -Np1 -d $name-$version -i $SRC/0001-glx-Add-another-fallback-library-name.patch
+
 	venom-meson $name-$version build \
-		-D x11=disabled \
-		-D glx=disabled \
+		-D x11=enabled \
+		-D glx=enabled \
 		-D gles1=false \
 		-D egl=true \
 		-D tls=false

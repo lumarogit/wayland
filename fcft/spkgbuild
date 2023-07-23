@@ -3,7 +3,7 @@
 # depends	    : fontconfig scdoc tllist utf8proc wayland-protocols pixman harfbuzz
 
 name=fcft
-version=3.1.5
+version=3.1.6
 release=2
 source="$name-$version.tar.gz::https://codeberg.org/dnkl/fcft/archive/$version.tar.gz"
 

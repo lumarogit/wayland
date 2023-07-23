@@ -1,0 +1,49 @@
+# description	: OpenGL compatible 3D graphics library
+# depends	: llvm python3-mako elfutils bison flex libdrm libva
+
+##olddepends	: llvm python3-mako elfutils bison flex libxext libxdamage
+##olddepends	: libxshmfence libxxf86vm libxrandr libdrm libglvnd libva
+
+name=mesa
+version=23.1.4
+release=2
+source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz"
+
+build() {
+
+	LLVM="-Dllvm=enabled -Dshared-llvm=enabled -Ddraw-use-llvm=true"
+
+	if [ "$(hostname)" = "ryzen" ] ; then
+		OPTS="-Dgallium-va=enabled -Dgallium-drivers=swrast,radeonsi"
+	elif [ "$(hostname)" = "dell" ] ; then
+		OPTS="-Dgallium-va=enabled -Dgallium-drivers=swrast,r600" 
+	elif [ "$(hostname)" = "lenovo" ] ; then
+		OPTS="-Dgallium-va=disabled -Dgallium-drivers=swrast,crocus"
+	fi
+
+	venom-meson $name-$version build $LLVM $OPTS \
+		-Ddri3=enabled \
+		-Degl=enabled \
+		-Dgbm=enabled \
+		-Dgles1=disabled \
+		-Dgles2=enabled \
+		-Dglx=disabled \
+                -Dosmesa=false \
+		-Dplatforms=wayland \
+                -Dgallium-xa=disabled \
+                -Dgallium-omx=disabled \
+                -Dgallium-vdpau=disabled  \
+                -Dgallium-opencl=disabled  \
+                -Dgallium-nine=false \
+		-Dshared-glapi=enabled \
+		-Dvulkan-drivers='' \
+		-Dglvnd=false \
+                -Dzstd=disabled \
+		-Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
+		-Dvalgrind=disabled
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+
+	# indirect rendering symlink
+	ln -s libGLX_mesa.so.0 $PKG/usr/lib/libGLX_indirect.so.0
+}

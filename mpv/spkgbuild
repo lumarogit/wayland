@@ -3,7 +3,7 @@
 
 name=mpv
 version=0.36.0
-release=4
+release=1
 source="https://github.com/mpv-player/mpv/archive/v$version/$name-$version.tar.gz"
 
 build() {

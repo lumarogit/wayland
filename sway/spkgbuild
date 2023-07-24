@@ -1,6 +1,6 @@
 # description	: Tiling Wayland compositor and replacement for the i3 window manager 
 # homepage	: https://swaywm.org/
-# depends	: json-c pango pcre2 swaybg ttf-dejavu wlroots
+# depends	: json-c pango pcre2 ttf-dejavu wlroots
 
 name=sway
 version=1.8.1

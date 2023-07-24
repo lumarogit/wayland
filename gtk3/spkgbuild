@@ -25,7 +25,7 @@ cat > $PKG/etc/gtk-3.0/settings.ini << "EOF"
 [Settings]
 gtk-icon-theme-name = Adwaita
 gtk-theme-name = Adwaita
-gtk-font-name = Cantarell 10
+gtk-font-name = DejaVu Sans 10
 EOF
 
 }

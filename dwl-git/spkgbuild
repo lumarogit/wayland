@@ -6,7 +6,9 @@ name=dwl-git
 version=20230714
 release=1
 commit=ca4a97b9335296c40f558baa1ead14578b166d70
-source="$name-$version.tar.gz::https://github.com/djpohly/dwl/archive/$commit.tar.gz"
+source="$name-$version.tar.gz::https://github.com/djpohly/dwl/archive/$commit.tar.gz
+	autostart.patch
+	config.h"
 
 build() {
 	cd ${name%-*}-$commit

@@ -1,0 +1,30 @@
+# description	: dwm-like bar for dwl
+# homepage	: https://sr.ht/~raphi/somebar/
+# depends	: pango wayland-protocols
+
+name=somebar
+version=1.0.3
+release=1
+source="$name-$version.tar.gz::https://git.sr.ht/~raphi/somebar/archive/1.0.3.tar.gz
+	config.hpp"
+
+build() { 
+	cd $name-$version
+
+	# Uncomment if you have any patches to apply
+	for p in $_portdir/*.patch $_portdir/*.diff; do
+		[ -f $p ] || continue
+		patch -Np1 -i $p
+	done
+	
+	# Use a custom config.hpp
+ 	if [ -f $SRC/config.hpp ]; then
+		cp $SRC/config.hpp src/config.hpp
+	else
+		cp -f src/config.def.hpp src/config.hpp
+	fi
+
+	venom-meson build
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build 
+}

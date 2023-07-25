@@ -20,7 +20,7 @@ index 447ba0051..3cf694c7b 100644
  
 +/* Autostart */
 +static const char *const autostart[] = {
-+        "wbg", "$HOME/.icons/fondo.jpg", NULL,
++        "wbg", "/path/to/your/image", NULL,
 +        NULL /* terminate */
 +};
 +

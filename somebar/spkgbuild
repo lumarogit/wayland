@@ -5,8 +5,7 @@
 name=somebar
 version=1.0.3
 release=1
-source="$name-$version.tar.gz::https://git.sr.ht/~raphi/somebar/archive/1.0.3.tar.gz
-	config.hpp"
+source="$name-$version.tar.gz::https://git.sr.ht/~raphi/somebar/archive/1.0.3.tar.gz"
 
 build() { 
 	cd $name-$version

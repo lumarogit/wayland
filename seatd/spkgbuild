@@ -1,0 +1,24 @@
+# description	: Seat management daemon and library 
+# homepage	: https://git.sr.ht/~kennylevinsen/seatd
+# depends	: meson ninja scdoc
+
+name=seatd
+version=0.8.0
+release=1
+source="$name-$version.tar.gz::https://git.sr.ht/~kennylevinsen/seatd/archive/$version.tar.gz
+	rc.seatd"
+
+build() {
+    venom-meson $name-$version build \
+          -Dlibseat-logind=disabled \
+	  -Dlibseat-seatd=enabled \
+	  -Dlibseat-builtin=enabled \
+          -Dman-pages=disabled \
+          -Dexamples=disabled \
+          -Dserver=enabled 
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+
+	# rc service
+	install -Dm755 $SRC/rc.seatd $PKG/etc/rc.d/seatd
+}

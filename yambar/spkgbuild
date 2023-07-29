@@ -3,7 +3,7 @@
 # depends	: alsa-lib fontconfig json-c meson pixman scdoc wayland yaml
 
 name=yambar
-version=1.9.0
+version=1.10.0
 release=1
 source="$name-$version.tar.gz::https://codeberg.org/dnkl/yambar/archive/$version.tar.gz"
 
@@ -11,7 +11,27 @@ build() {
 	venom-meson $name build \
 		-Dbackend-x11=disabled \
 		-Dbackend-wayland=enabled \
-		-Dplugin-mpd=disabled --warnlevel 0
+		-Dplugin-alsa=enabled \
+		-Dplugin-backlight=enabled \
+		-Dplugin-battery=enabled \
+		-Dplugin-clock=enabled \
+		-Dplugin-cpu=disabled \
+		-Dplugin-disk-io=disabled \
+		-Dplugin-dwl=disabled \
+		-Dplugin-foreign-toplevel=enabled \
+		-Dplugin-mem=disabled \
+		-Dplugin-mpd=disabled \
+		-Dplugin-i3=enabled \
+		-Dplugin-label=enabled \
+		-Dplugin-network=enabled \
+		-Dplugin-pipewire=disabled \
+		-Dplugin-pulse=disabled \
+		-Dplugin-removables=disabled \
+		-Dplugin-river=disabled \
+		-Dplugin-script=disabled \
+		-Dplugin-sway-xkb=disabled \
+		-Dplugin-xkb=disabled \
+		-Dplugin-xwindow=disabled
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 }

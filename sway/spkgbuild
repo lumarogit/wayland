@@ -4,7 +4,7 @@
 
 name=sway
 version=1.8.1
-release=2
+release=3
 source="https://github.com/swaywm/sway/releases/download/$version/sway-$version.tar.gz"
 
 build() {
@@ -13,7 +13,7 @@ build() {
     		-Dzsh-completions=false \
     		-Dbash-completions=false \
     		-Dfish-completions=false \
-		-Dswaybar=true \
+		-Dswaybar=false \
 		-Dswaynag=false \
 		-Dtray=disabled \
     		-Dxwayland=disabled \

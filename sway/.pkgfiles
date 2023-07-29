@@ -1,11 +1,10 @@
-sway-1.8.1-2
+sway-1.8.1-3
 drwxr-xr-x root/root    etc/
 drwxr-xr-x root/root    etc/sway/
 -rw-r--r-- root/root    etc/sway/config
 drwxr-xr-x root/root    usr/
 drwxr-xr-x root/root    usr/bin/
 -rwxr-xr-x root/root    usr/bin/sway
--rwxr-xr-x root/root    usr/bin/swaybar
 -rwxr-xr-x root/root    usr/bin/swaymsg
 drwxr-xr-x root/root    usr/share/
 drwxr-xr-x root/root    usr/share/man/

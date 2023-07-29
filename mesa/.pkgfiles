@@ -1,4 +1,4 @@
-mesa-23.1.4-3
+mesa-23.2.0-3
 drwxr-xr-x root/root    usr/
 drwxr-xr-x root/root    usr/include/
 drwxr-xr-x root/root    usr/include/EGL/
@@ -10,10 +10,10 @@ drwxr-xr-x root/root    usr/include/GL/internal/
 -rw-r--r-- root/root    usr/include/gbm.h
 drwxr-xr-x root/root    usr/lib/
 drwxr-xr-x root/root    usr/lib/dri/
-hrwxr-xr-x root/root    usr/lib/dri/kms_swrast_dri.so link to usr/lib/dri/swrast_dri.so
-hrwxr-xr-x root/root    usr/lib/dri/r600_dri.so link to usr/lib/dri/swrast_dri.so
--rwxr-xr-x root/root    usr/lib/dri/r600_drv_video.so
--rwxr-xr-x root/root    usr/lib/dri/swrast_dri.so
+-rwxr-xr-x root/root    usr/lib/dri/kms_swrast_dri.so
+hrwxr-xr-x root/root    usr/lib/dri/radeonsi_dri.so link to usr/lib/dri/kms_swrast_dri.so
+-rwxr-xr-x root/root    usr/lib/dri/radeonsi_drv_video.so
+hrwxr-xr-x root/root    usr/lib/dri/swrast_dri.so link to usr/lib/dri/kms_swrast_dri.so
 lrwxrwxrwx root/root    usr/lib/libEGL_mesa.so -> libEGL_mesa.so.0
 lrwxrwxrwx root/root    usr/lib/libEGL_mesa.so.0 -> libEGL_mesa.so.0.0.0
 -rwxr-xr-x root/root    usr/lib/libEGL_mesa.so.0.0.0

@@ -5,8 +5,8 @@
 ##olddepends	: libxshmfence libxxf86vm libxrandr libdrm libglvnd libva
 
 name=mesa
-version=23.2.0
-release=3
+version=23.1.4
+release=1
 source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz"
 
 build() {

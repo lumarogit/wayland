@@ -4,8 +4,9 @@
 
 name=sway
 version=1.8.1
-release=3
-source="https://github.com/swaywm/sway/releases/download/$version/sway-$version.tar.gz"
+release=4
+source="https://github.com/swaywm/sway/releases/download/$version/sway-$version.tar.gz
+	sway.desktop"
 
 build() {
 	venom-meson $name-$version build \
@@ -20,4 +21,7 @@ build() {
 		-Dwerror=false
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
+
+	install -D -m644 $SRC/sway.desktop \
+		-t $PKG/usr/share/wayland-sessions/
 }

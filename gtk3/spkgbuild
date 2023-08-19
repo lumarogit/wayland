@@ -32,7 +32,7 @@ build() {
 
 	# We don't compile with librsvg which leads to this utility solely causing
 	# compiler errors for some packages. It has no use at all.
-	rm -f "$1/usr/bin/gtk-encode-symbolic-svg"
+	rm -f "$PKG/usr/bin/gtk-encode-symbolic-svg"
 
 cat > $PKG/etc/gtk-3.0/settings.ini << "EOF"
 [Settings]

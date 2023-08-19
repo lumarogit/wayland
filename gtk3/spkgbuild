@@ -8,8 +8,16 @@ release=3
 source="$name-$version.tar.gz::https://gitlab.gnome.org/GNOME/gtk/-/archive/$version/gtk-$version.tar.gz"
 
 build() {
+	cd gtk-$version
 
-	venom-meson gtk-$version build \
+	# Don't enable native language support and don't compile schemas.
+	sed -e '/compile_schemas/s/true/false/' \
+    	-e '/ENABLE_NLS/s/1/0/' \
+    	-e "/subdir('po/d" \
+    	meson.build > _
+	mv -f _ meson.build
+	
+	venom-meson build \
 		-Dcolord=$(scratch isinstalled colord && echo yes || echo no) \
 		-Dx11_backend=false \
 		-Dwin32_backend=false \
@@ -22,11 +30,14 @@ build() {
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 
+	# We don't compile with librsvg which leads to this utility solely causing
+	# compiler errors for some packages. It has no use at all.
+	rm -f "$1/usr/bin/gtk-encode-symbolic-svg"
+
 cat > $PKG/etc/gtk-3.0/settings.ini << "EOF"
 [Settings]
 gtk-icon-theme-name = Adwaita
 gtk-theme-name = Adwaita
 gtk-font-name = DejaVu Sans 10
 EOF
-
 }

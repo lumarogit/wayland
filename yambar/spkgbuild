@@ -4,7 +4,7 @@
 
 name=yambar
 version=1.10.0
-release=1
+release=2
 source="$name-$version.tar.gz::https://codeberg.org/dnkl/yambar/archive/$version.tar.gz"
 
 build() {
@@ -12,8 +12,8 @@ build() {
 		-Dbackend-x11=disabled \
 		-Dbackend-wayland=enabled \
 		-Dplugin-alsa=enabled \
-		-Dplugin-backlight=enabled \
-		-Dplugin-battery=enabled \
+		-Dplugin-backlight=disabled \
+		-Dplugin-battery=disabled \
 		-Dplugin-clock=enabled \
 		-Dplugin-cpu=disabled \
 		-Dplugin-disk-io=disabled \

@@ -6,10 +6,13 @@
 
 name=mesa
 version=23.1.7
-release=1
-source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz"
+release=2
+source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz
+	fix-build-llvm17.patch"
 
 build() {
+
+	patch -d $name-$version -Np1 -i $SRC/fix-build-llvm17.patch	
 
 	LLVM="-Dllvm=enabled -Dshared-llvm=enabled -Ddraw-use-llvm=true"
 

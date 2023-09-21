@@ -5,8 +5,8 @@
 ##olddepends	: libxshmfence libxxf86vm libxrandr libdrm libglvnd libva
 
 name=mesa
-version=23.1.7
-release=2
+version=23.1.8
+release=1
 source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz
 	fix-build-llvm17.patch"
 

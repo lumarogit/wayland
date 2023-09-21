@@ -12,8 +12,7 @@ source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz"
 build() {
 	cd $name-$version
 
-
-	# Remove two unneeded references to LLVM headers to avoid a build failure with LLVM 17 or later:
+	# Remove two unneeded references to LLVM headers to avoid a build failure with LLVM 17 or later
 	sed '/Scalar.h/d;/Utils.h/d' \
 	   -i src/gallium/auxiliary/gallivm/lp_bld_init.c
 	

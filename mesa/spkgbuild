@@ -7,13 +7,16 @@
 name=mesa
 version=23.1.8
 release=1
-source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz
-	fix-build-llvm17.patch"
+source="https://mesa.freedesktop.org/archive/$name-$version.tar.xz"
 
 build() {
+	cd $name-$version
 
-	patch -d $name-$version -Np1 -i $SRC/fix-build-llvm17.patch	
 
+	# Remove two unneeded references to LLVM headers to avoid a build failure with LLVM 17 or later:
+	sed '/Scalar.h/d;/Utils.h/d' \
+	   -i src/gallium/auxiliary/gallivm/lp_bld_init.c
+	
 	LLVM="-Dllvm=enabled -Dshared-llvm=enabled -Ddraw-use-llvm=true"
 
 	if [ "$(hostname)" = "ryzen" ] ; then
@@ -24,7 +27,7 @@ build() {
 		OPTS="-Dgallium-va=disabled -Dgallium-drivers=swrast,crocus"
 	fi
 
-	venom-meson $name-$version build $LLVM $OPTS \
+	venom-meson build $LLVM $OPTS \
 		-Ddri3=enabled \
 		-Degl=enabled \
 		-Dgbm=enabled \

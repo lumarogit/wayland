@@ -1,4 +1,4 @@
-sway-1.8.1-3
+sway-1.8.1-5
 drwxr-xr-x root/root    etc/
 drwxr-xr-x root/root    etc/sway/
 -rw-r--r-- root/root    etc/sway/config
@@ -21,3 +21,6 @@ drwxr-xr-x root/root    usr/share/man/man7/
 -rw-r--r-- root/root    usr/share/man/man7/swaybar-protocol.7.gz
 drwxr-xr-x root/root    usr/share/wayland-sessions/
 -rw-r--r-- root/root    usr/share/wayland-sessions/sway.desktop
+drwxr-xr-x root/root    usr/share/xdg-desktop-portal/
+drwxr-xr-x root/root    usr/share/xdg-desktop-portal/portals/
+-rw-r--r-- root/root    usr/share/xdg-desktop-portal/portals/sway-portals.conf

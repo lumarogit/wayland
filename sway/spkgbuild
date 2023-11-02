@@ -1,11 +1,11 @@
 # description	: Tiling Wayland compositor and replacement for the i3 window manager 
-# homepage	: https://swaywm.org/
 # depends	: json-c pango pcre2 ttf-dejavu wlroots
 
 name=sway
 version=1.8.1
-release=4
+release=5
 source="https://github.com/swaywm/sway/releases/download/$version/sway-$version.tar.gz
+	sway-portals.conf
 	sway.desktop"
 
 build() {
@@ -22,6 +22,7 @@ build() {
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
 
-	install -D -m644 $SRC/sway.desktop \
-		-t $PKG/usr/share/wayland-sessions/
+	install -Dm644 $SRC/sway.desktop $PKG/usr/share/wayland-sessions/sway.desktop
+
+	install -Dm644 $SRC/sway-portals.conf -t $PKG/usr/share/xdg-desktop-portal/portals/
 }

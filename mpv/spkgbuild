@@ -25,4 +25,12 @@ build() {
 		-Dlua=luajit 
 	meson compile -C build
 	DESTDIR=$PKG meson install --no-rebuild -C build
+
+	rm -rf $PKG/usr/share/bash*
+	rm -rf $PKG/usr/share/zsh*
+	rm -rf $PKG/usr/share/icons*
+	rm -f $PKG/usr/bin/plplay
+	rm -rf $PKG/usr/include/libplacebo
+	#rm -rf $PKG/usr/lib/libplacebo*
+	rm -rf $PKG/usr/lib/pkgconfig/libplacebo*
 }

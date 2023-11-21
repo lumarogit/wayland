@@ -2,15 +2,24 @@
 # depends	: mesa meson lcms2 ffmpeg libass luajit wayland-protocols
 
 name=mpv
-version=0.36.0
+version=0.37.0
 release=1
-source="https://github.com/mpv-player/mpv/archive/v$version/$name-$version.tar.gz"
+source="https://github.com/mpv-player/mpv/archive/v$version/$name-$version.tar.gz
+	libplacebo.wrap "
 
 build() {
+	# wrap libplacebo
+	mkdir -pv $name-$version/subprojects/
+	install -Dm755 $SRC/libplacebo.wrap -t $name-$version/subprojects/
+
 	venom-meson $name-$version build \
+		--wrap-mode=forcefallback \
+		--force-fallback-for=libplacebo \
 		-Dalsa=enabled \
 		-Dlibarchive=enabled \
 		-Dlibmpv=true \
+		-Dtests=false \
+		-Dvulkan=disabled \
 		-Dwayland=enabled \
 		-Dx11=disabled \
 		-Dlua=luajit 

@@ -3,7 +3,7 @@
 static const int sloppyfocus               = 1;  /* focus follows mouse */
 static const int bypass_surface_visibility = 0;  /* 1 means idle inhibitors will disable idle tracking even if it's surface isn't visible  */
 static const unsigned int borderpx         = 1;  /* border pixel of windows */
-static const float bordercolor[]           = {0.0, 0.0, 0.0, 1.0};
+static const float bordercolor[]           = {0.1, 0.1, 0.1, 1.0};
 static const float focuscolor[]            = {0.2, 0.2, 0.2, 1.0};
 /* To conform the xdg-protocol, set the alpha to zero to restore the old behavior */
 static const float fullscreen_bg[]         = {0.1, 0.1, 0.1, 1.0};
@@ -126,7 +126,10 @@ static const char *nnncmd[] = { "footclient", "nnn", NULL };
 // Brigtness //
 static const char *upbright[] = { "light", "-A", "5", NULL };
 static const char *downbright[] = { "light","-U", "5", NULL };
-
+// Record //
+static const char *record[]   = { "record-wl", NULL };
+// Session //
+static const char *session[]   = { "session-wl", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
@@ -183,6 +186,10 @@ static const Key keys[] = {
 	{ WLR_MODIFIER_SHIFT,XKB_KEY_Print,spawn,SHCMD("capture-wl -A") }, // Area
 	{ 0,XKB_KEY_Print,spawn, SHCMD("capture-wl -S") }, // Screen
 	{ MODKEY|WLR_MODIFIER_SHIFT,XKB_KEY_Print,spawn,SHCMD("capture-wl -W") }, // Window
+	/* Screen record  */
+	{ MODKEY,XKB_KEY_v,spawn,{.v = record } },
+	/* Session */
+	{ MODKEY,XKB_KEY_x,spawn,{.v = session } },
 };
 
 static const Button buttons[] = {
